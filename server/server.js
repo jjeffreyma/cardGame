@@ -7,7 +7,7 @@ const playerController = require('./playerController');
 
 const PORT = 3000;
 
-mongoose.connect('mongodb://localhost/mongodb-orm', function() {
+mongoose.connect('mongodb://jeffreyma:jeffreyma@ec2-user@ec2-52-89-83-246.us-west-2.compute.amazonaws.com:27017/cardsDB', function() {
   mongoose.connection.db.dropDatabase();
 });
 mongoose.connection.once('open', () => {
