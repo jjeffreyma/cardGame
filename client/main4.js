@@ -14,7 +14,7 @@ function sendCards(cards, player, hand, current, number) {
 }
 
 function resetCards() {
-  $.get('http://localhost:3000/player/player4', function (data) {
+  $.get('http://ec2-52-89-83-246.us-west-2.compute.amazonaws.com:3000/player/player4', function (data) {
     currentHand = [];
     let cards = [...data.cards.split(",")];
     displayCards(cards, true);
@@ -28,14 +28,14 @@ function updateCards(curr, left) {
   let nextPlayer = 'player1';
   
   $.ajax({
-    url: 'http://localhost:3000/player/player0',
+    url: 'http://ec2-52-89-83-246.us-west-2.compute.amazonaws.com:3000/player/player0',
     type: "PUT",
     data: sendCards(current, 'player0', checkHand(current), nextPlayer, gamePlayers.toString()),
     dataType: "json",
     contentType: "application/json"
   });
   $.ajax({
-    url: 'http://localhost:3000/player/player4',
+    url: 'http://ec2-52-89-83-246.us-west-2.compute.amazonaws.com:3000/player/player4',
     type: "PUT",
     data: sendCards(leftovers, 'player4', '', '', ''),
     dataType: "json",
@@ -44,7 +44,7 @@ function updateCards(curr, left) {
 }
 
 function updatePile() {
-  $.get('http://localhost:3000/player/player0', function (data) {
+  $.get('http://ec2-52-89-83-246.us-west-2.compute.amazonaws.com:3000/player/player0', function (data) {
     $('#pile').val(displayCards(data.cards, false));
     gamePlayers = parseInt(data.number);
     $('h3').text(data.currentplayer + '\'s turn');
